@@ -81,7 +81,7 @@ def submenu(initial):
         
 def game_settings_main(game_setup):
                           # Main game Settings/Setup!!
-    if gamesetup == 1:
+    if game_setup == 1:
         music_setup = int(input('''
         1. Lounge music
         2. Caffe music
@@ -90,7 +90,7 @@ def game_settings_main(game_setup):
         
         : '''))
         return music_setup
-    elif gamesetup == 2:
+    elif game_setup == 2:
         color_setup = int(input('''
         1. Solid
         2. Matt theme
@@ -98,14 +98,14 @@ def game_settings_main(game_setup):
         4. Back to menu
         : '''))
         return color_setup
-    elif gamesetup == 3:
+    elif game_setup == 3:
         player_mode = int(input('''
         1. Single Player Mode
         2. Two Players mode
         
         : '''))
         return player_mode
-    elif gamesetup == 4:
+    elif game_setup == 4:
         difficulity_setup = int(input('''
         1. Easy
         2. Medium
@@ -113,10 +113,11 @@ def game_settings_main(game_setup):
         
         : '''))
         return difficulity_setup
-    elif gamesetup == 5:
+    elif game_setup == 5:
         back_to_menu = "menu"
     
-def game_settings_music():
+def game_settings_music(game_setup):
+
     back_to_menu = False
     music_setup = int(input('''
     1 Lounge music
@@ -153,7 +154,7 @@ def main(back_to_menu=None):
         initial = menu()
         secini = submenu(initial)
         if secini == 4:
-            trecini = game_settings_main(secini)
+            trecini = game_settings_main(4)
             
             if trecini == 1:
                 quatrocini = game_settings_music(trecini)
@@ -162,7 +163,7 @@ def main(back_to_menu=None):
                 elif quatrocini == 2:
                     print("Caffe.mp3")
                 elif quatrocini == 3:
-                    print("chill.mp3")
+                    print("chill.mp3")    
                 elif quatrocini == 4:
                     print("Jazz.mp3")
             elif trecini == 2:
