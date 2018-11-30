@@ -24,17 +24,16 @@ bgblue = '\033[44m'
 bgpurple = '\033[45m'
 bgcyan = '\033[46m'
 bgwhite = '\033[47m'
-
-underline = '\033[2m'
-#######################################################################x
-
+nderline = '\033[2m'
+######################################################################x
+   
+        
+def menu():
     
-
-
-
-                
-def menu():                                     # Main menu
-    initial = int(input('''Battleship
+    introname = "BATTLESHIP\n"
+    CENTERINTRONAME = introname.center(80)
+    print(CENTERINTRONAME)                                    # Main menu
+    initial = int(input('''
 
     1. New Game
     2. Load Game
@@ -43,6 +42,7 @@ def menu():                                     # Main menu
     5. Credits
     6. Exit 
     :'''))
+    #back_to_menu = ""
     return initial
 def submenu(initial):
     exit = None                           # Sub Menu
@@ -64,125 +64,138 @@ def submenu(initial):
         2. Color Theme
         3. Single Player Mode
         4. Difficulity
-        5. Back to menu
+        
         : '''))
     elif initial == 5:
         credits = int(input('''
         Torpedo
         Written by Ghammud Dawood and Krisztián Szőllösy
-        Co work and design, Sano
+        Co work Sano
         All right reserved
         Press 1 to Menu
         : '''))
     elif initial == 6:
         exit = "fuck"
         print("No way man!")
+    return game_setup
         
-    return game_status, game_setup, guide, exit
-def game_settings_main(gamesetup):
-    back_to_menu = "menu"                        # Main game Settings/Setup!!
+def game_settings_main(game_setup):
+                          # Main game Settings/Setup!!
     if gamesetup == 1:
         music_setup = int(input('''
         1. Lounge music
         2. Caffe music
         3. Chill out                                         
         4. Jazz music
-        9. Bact to Menu
+        
         : '''))
+        return music_setup
     elif gamesetup == 2:
         color_setup = int(input('''
-        1. Default
-        2. Blue Power
-        3. Light
+        1. Solid
+        2. Matt theme
+        3. Default
         4. Back to menu
         : '''))
+        return color_setup
     elif gamesetup == 3:
         player_mode = int(input('''
         1. Single Player Mode
         2. Two Players mode
-        3. Back to Menu
+        
         : '''))
+        return player_mode
     elif gamesetup == 4:
         difficulity_setup = int(input('''
         1. Easy
         2. Medium
         3. Hard
-        4. Back to Menu
+        
         : '''))
+        return difficulity_setup
     elif gamesetup == 5:
         back_to_menu = "menu"
-    return music_setup, color_setup, player_mode, difficulity_setup, back_to_menu
-def game_settings_music(music_setup):
-    back_to_menu = False                           # Choose music
-    if music_setup == 1:
-        playsound(fileDir + "/Lounge.mp3")
-    elif music_setup == 2:
-        playsound(fileDir + "/caffee.mp3")
-    elif music_setup == 3:
-        playsound(fileDir + "/chill.mp3")
-    elif music_setup == 4:
-        playsound(fileDir + "/jazz.mp3")
-    #elif music_setup == 5:
-    #    playsound(fileDir + "/Imagination.mp3")
-    #elif music_setup == 6:
-    #    playsound(fileDir + "/Reverse_Skydiving.mp3")
-    #elif music_setup == 7:
-    #    playsound(fileDir + "/Night_Call.mp3")
-    #elif music_setup == 8:
-    #    playsound(fileDir + "/Sordid_affair.mp3")
-    elif music_setup == 9:
-        back_to_menu = "menu"
-    return music_setup, back_to_menu
+    
+def game_settings_music():
+    back_to_menu = False
+    music_setup = int(input('''
+    1 Lounge music
+    2 Caffe music
+    3 Chill music
+    4 Jazz music
+    : '''))                           # Choose music
+    
+    return music_setup
 def set_color(color_setup):
-    back_to_menu = False                      ### Choose Colors
-    if color_setup == 1:
-        coloring = default
-    elif color_setup == 2:
-        coloring  = red, bgblue
-    elif color_setup == 3:
-        coloring = black, bgwhite
-    elif color_setup == 4:
-        back_to_menu = True
-    return coloring, back_to_menu
+    coloring = int(input('''
+    1 Solid
+    2 Matt theme
+    3 Default
+    : '''))
+    return coloring
 def set_playerMode(player_mode):
     back_to_menu = False                  # single or two player setup
-    if player_mode == 1:
-        game_mode = "single"
-    elif player_mode == 2:
-        game_mode = "multi"
-    elif game_mode == 3:
-        back_to_menu = True
-    return game_mode, back_to_menu
+    game_mode = int(input('''
+    1 Single player
+    2 Two player
+    : '''))
+    return game_mode
 def set_difficulity(difficulity_setup):
-    back_to_menu = False
-    if difficulity_setup == 1:
-        level = 'easy'
-    elif difficulity_setup == 2:
-        level = 'medium'
-    elif difficulity_setup == 3:
-        level = 'hard'
-    elif difficulity_setup == 4:
-        back_to_menu = "menu"
-    return level, back_to_menu
-
+    level = int(input('''
+    1 easy
+    2 medium
+    3 hard
+    : '''))
+    return level
 def main(back_to_menu=None):
-    guide = 1
-    if back_to_menu == "menu" or guide == 88:
-        menu()
-        submenu(initial)
-        if initial == 4:
-            game_settings_main(game_setup)
-            if game_setup == 1:
-                game_settings_music(music_setup)
-            elif game_setup == 2:
-                set_color(color_setup)
-            elif game_setup == 3:
-                set_playerMode(player_mode)
-            elif game_setup == 4:
-                set_difficulity(difficulity_setup)
-main()
+    if back_to_menu == "menu":
+        
+        initial = menu()
+        secini = submenu(initial)
+        if secini == 4:
+            trecini = game_settings_main(secini)
+            
+            if trecini == 1:
+                quatrocini = game_settings_music(trecini)
+                if quatrocini == 1:
+                    print("Lounge.mp3")
+                elif quatrocini == 2:
+                    print("Caffe.mp3")
+                elif quatrocini == 3:
+                    print("chill.mp3")
+                elif quatrocini == 4:
+                    print("Jazz.mp3")
+            elif trecini == 2:
+                seicini = set_color(trecini)
+                if secini == 1:
+                    print("Solid")
+                elif secini == 2:
+                    print("Matt theme")
+                elif secini == 3:
+                    print("default")
+            elif trecini == 3:
+                settecini = set_playerMode(trecini)
+                if settecini == 1:
+                    print("Single player")
+                elif settecini == 2:
+                    print("Two players")
+            elif trecini == 4:
+                ottocini = set_difficulity(trecini)
+                if ottocini == 1:
+                    print("easy")
+                elif ottocini == 2:
+                    print("medium")
+                elif ottocini == 3:
+                    print("hard")
 
 
+
+        elif initial == 5:
+            submenu(initial)
+        elif initial == 6:
+            submenu(initial)
+
+main(back_to_menu="menu")        
 
 
 
